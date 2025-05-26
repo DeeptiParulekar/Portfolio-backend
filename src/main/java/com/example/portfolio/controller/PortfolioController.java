@@ -22,7 +22,7 @@ import com.example.portfolio.service.PortfolioService;
 
 @RestController
 @RequestMapping("/api/portfolio")
-@CrossOrigin(origins = "http://localhost:3000") // React URL
+@CrossOrigin(origins = "http://localhost:3000") 
 public class PortfolioController {
 
 	@Autowired

@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "portfolioId", "allowanceTypeName" })
+@JsonPropertyOrder({ "portfolioId", "portfolioName", "portfolioTitle", "portfolioDescription" })
 public class PortfolioDTO {
 
 	@JsonProperty("portfolioId")
-	private long portfolioId;;
+	private long portfolioId;
 
 	@JsonProperty("portfolioName")
 	private String portfolioName;
@@ -19,6 +19,12 @@ public class PortfolioDTO {
 
 	@JsonProperty("portfolioDescription")
 	private String portfolioDescription;
+
+	@JsonProperty("category")
+	private String category;
+
+	@JsonProperty("client")
+	private String client;
 
 	public long getPortfolioId() {
 		return portfolioId;
@@ -50,6 +56,22 @@ public class PortfolioDTO {
 
 	public void setPortfolioDescription(String portfolioDescription) {
 		this.portfolioDescription = portfolioDescription;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getClient() {
+		return client;
+	}
+
+	public void setClient(String client) {
+		this.client = client;
 	}
 
 }
