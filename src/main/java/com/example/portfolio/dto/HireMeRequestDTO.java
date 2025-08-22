@@ -1,7 +1,5 @@
 package com.example.portfolio.dto;
 
-import javax.persistence.Column;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

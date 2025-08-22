@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.example.portfolio.audit.Auditable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "portfolio", schema = "myportfolio")
@@ -32,6 +33,15 @@ public class Portfolio extends Auditable<Long> {
 
 	@Column(name = "client")
 	private String client;
+
+	@Column(name = "experience")
+	private String experience;
+
+	@Column(name = "bio")
+	private String bio;
+
+	@Column(name = "imageUrl")
+	private String imageUrl;
 
 	public Long getPortfolioId() {
 		return portfolioId;
@@ -79,6 +89,30 @@ public class Portfolio extends Auditable<Long> {
 
 	public void setClient(String client) {
 		this.client = client;
+	}
+
+	public String getExperience() {
+		return experience;
+	}
+
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 }

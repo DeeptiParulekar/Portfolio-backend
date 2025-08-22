@@ -46,7 +46,7 @@ public class ProfileServiceImpl implements ProfileService {
 
 		profile.setWhatIDo(profileDTO.getWhatIDo());
 
-		Profile savedProfile = profileRepository.save(profile);
+		Profile savedProfile = profileRepository.save(profile); 
 		return mapToDTO(savedProfile);
 	}
 
@@ -72,27 +72,83 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 	}
 
+//	@Override
+//	public ProfileDTO updateProfile(Long profileId, ProfileDTO profileDTO) {
+//		Profile existing = profileRepository.findById(profileId)
+//				.orElseThrow(() -> new RuntimeException("profileId not found"));
+//
+//		existing.setProfileName(profileDTO.getProfileName());
+//		existing.setProfileTitle(profileDTO.getProfileTitle());
+//		existing.setProfileDescription(profileDTO.getProfileDescription());
+//		existing.setPortfolioUrl(profileDTO.getPortfolioUrl());
+//		existing.setResumeUrl(profileDTO.getResumeUrl());
+//
+//		if (profileDTO.getProfileImage() != null && profileDTO.getProfileImage().startsWith("data:image")) {
+//			String imageUrl = saveBase64Image(profileDTO.getProfileImage());
+//			existing.setProfileImage(imageUrl);
+//		}
+//
+//		existing.setWhatIDo(profileDTO.getWhatIDo());
+//
+//		Profile updated = profileRepository.save(existing);
+//		return mapToDTO(updated);
+//	}
+	
+	
+//	@Override
+//	public ProfileDTO updateProfile(Long profileId, ProfileDTO profileDTO) {
+//	    Profile existing = profileRepository.findById(profileId)
+//	            .orElseThrow(() -> new RuntimeException("profileId not found"));
+//
+//	    existing.setProfileName(profileDTO.getProfileName());
+//	    existing.setProfileTitle(profileDTO.getProfileTitle());
+//	    existing.setProfileDescription(profileDTO.getProfileDescription());
+//	    existing.setPortfolioUrl(profileDTO.getPortfolioUrl());
+//	    existing.setResumeUrl(profileDTO.getResumeUrl());
+//	    existing.setWhatIDo(profileDTO.getWhatIDo());
+//
+//	    if (profileDTO.getProfileImage() != null && profileDTO.getProfileImage().startsWith("data:image")) {
+//	        String imageUrl = saveBase64Image(profileDTO.getProfileImage());
+//	        existing.setProfileImage(imageUrl);
+//	    }
+//
+//	    // ✅ THIS IS MISSING
+//	    if (profileDTO.getProfileImage2() != null) {
+//	        existing.setProfileImage2(profileDTO.getProfileImage2());
+//	    }
+//
+//	    Profile updated = profileRepository.save(existing);
+//	    return mapToDTO(updated);
+//	}
+	
 	@Override
 	public ProfileDTO updateProfile(Long profileId, ProfileDTO profileDTO) {
-		Profile existing = profileRepository.findById(profileId)
-				.orElseThrow(() -> new RuntimeException("profileId not found"));
+	    Profile existing = profileRepository.findById(profileId)
+	            .orElseThrow(() -> new RuntimeException("profileId not found"));
 
-		existing.setProfileName(profileDTO.getProfileName());
-		existing.setProfileTitle(profileDTO.getProfileTitle());
-		existing.setProfileDescription(profileDTO.getProfileDescription());
-		existing.setPortfolioUrl(profileDTO.getPortfolioUrl());
-		existing.setResumeUrl(profileDTO.getResumeUrl());
+	    existing.setProfileName(profileDTO.getProfileName());
+	    existing.setProfileTitle(profileDTO.getProfileTitle());
+	    existing.setProfileDescription(profileDTO.getProfileDescription());
+	    existing.setPortfolioUrl(profileDTO.getPortfolioUrl());
+	    existing.setResumeUrl(profileDTO.getResumeUrl());
+	    existing.setWhatIDo(profileDTO.getWhatIDo());
 
-		if (profileDTO.getProfileImage() != null && profileDTO.getProfileImage().startsWith("data:image")) {
-			String imageUrl = saveBase64Image(profileDTO.getProfileImage());
-			existing.setProfileImage(imageUrl);
-		}
+	    // Save and set base64 profileImage
+	    if (profileDTO.getProfileImage() != null && profileDTO.getProfileImage().startsWith("data:image")) {
+	        String imageUrl = saveBase64Image(profileDTO.getProfileImage());
+	        existing.setProfileImage(imageUrl);
+	    }
 
-		existing.setWhatIDo(profileDTO.getWhatIDo());
+	    // ✅ Save profileImage2 if provided (URL or path directly)
+	    if (profileDTO.getProfileImage2() != null) {
+	        existing.setProfileImage2(profileDTO.getProfileImage2());
+	    }
 
-		Profile updated = profileRepository.save(existing);
-		return mapToDTO(updated);
+	    Profile updated = profileRepository.save(existing);
+	    return mapToDTO(updated);
 	}
+
+
 
 	@Override
 	public List<ProfileDTO> getAllProfiles() {

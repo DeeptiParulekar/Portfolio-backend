@@ -25,7 +25,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 		entity.setPortfolioDescription(dto.getPortfolioDescription());
 		entity.setCategory(dto.getCategory());
 		entity.setClient(dto.getClient());
-
+		entity.setImageUrl(dto.getImageUrl());
 		Portfolio saved = repository.save(entity);
 		return mapToDTO(saved);
 	}
@@ -39,7 +39,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 		existing.setPortfolioDescription(dto.getPortfolioDescription());
 		existing.setCategory(dto.getCategory());
 		existing.setClient(dto.getClient());
-
+		existing.setImageUrl(dto.getImageUrl());
 		Portfolio updated = repository.save(existing);
 		return mapToDTO(updated);
 	}
@@ -71,7 +71,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 		dto.setPortfolioDescription(entity.getPortfolioDescription());
 		dto.setCategory(entity.getCategory());
 		dto.setClient(entity.getClient());
-
+		dto.setImageUrl(entity.getImageUrl());
 		return dto;
 	}
 }
